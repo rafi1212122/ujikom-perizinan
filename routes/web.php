@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    try {
+        if(User::all()->count()){
+            return redirect(route("dashboard"));
+        }else{
+            return view('welcome');
+        }
+    } catch (\Throwable $th) {
+    }
 });
 
 Route::get('/dashboard', function () {
