@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\StudentsExport;
-use App\Imports\StudentsImport;
-use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
-class StudentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('dataSantri.index');
+        return view("dataUser.index");
     }
 
     /**
@@ -27,7 +26,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('dataSantri.create');
+        return view("dataUser.create");
     }
 
     /**
@@ -40,15 +39,18 @@ class StudentController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'room' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        Student::create([
+        User::create([
             'name' => $request->name,
-            'room' => $request->room,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => 'MUSYRIF',
         ]);
 
-        return redirect(route("students.index"));
+        return redirect(route("users.index"));
     }
 
     /**
@@ -91,33 +93,28 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(User $user)
     {
-        $student->delete();
-        return redirect(route("students.index"));
+        $user->delete();
+        return redirect(route("users.index"));
     }
 
-    public function exportExcel()
+    public function updateProfile(Request $request)
     {
-        if(auth()->user()->level==="ADMIN"){
-            return Excel::download(new StudentsExport, 'students.xlsx');
-        }else {
-            return redirect(route('dashboard'));
-        }
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.auth()->user()->id],
+        ]);
+
+        User::findOrFail(auth()->user()->id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        return redirect(route("profile.edit"));
     }
 
-    public function exportPDF()
+    public function editProfile()
     {
-        if(auth()->user()->level==="ADMIN"){
-            return Excel::download(new StudentsExport, 'students.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        }else {
-            return redirect(route('dashboard'));
-        }
-    }
-
-    public function import(Request $request)
-    {
-        Excel::import(new StudentsImport, $request->file('file'));
-        return redirect(route("students.index"));
+        return view('admin-dashboard');
     }
 }
