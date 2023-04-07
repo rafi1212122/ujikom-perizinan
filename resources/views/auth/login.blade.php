@@ -1,56 +1,32 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/app.css">
+    <title>Login</title>
+</head>
+<body>
+    <section class="py-[7.69rem] bg-gradient-to-b from-sky-500 to-sky-300 flex items-center justify-center min-h-screen">
+        <div class="flex items-center justify-center px-4 py-10 mx-auto rounded-2xl bg-white/50 gap-10 md:px-10">
+            <img src="/img/logo-login-big-idn.svg" class="h-64 w-64 hidden md:block" alt="">
+            <div class="bg-white px-6 py-4 rounded-xl w-full min-w-[50vw]">
+                <img src="/img/logo-login-small-idn.svg" class="mx-auto h-16 w-16 mb-8" alt="">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <label class="text-gray-500" for="email">Email</label><br>
+                    <input class="rounded-full border-2 border-gray-400 mt-2 mb-5 w-full focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="email" id="email" name="email" placeholder="hr@gmail.com"><br>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+                    <label class="text-gray-500" for="password">Password</label><br>
+                    <input class="rounded-full border-2 border-gray-400 mt-2 mb-3 w-full focus:border-sky-500 focus:ring-1 focus:ring-sky-500" type="password" id="password" name="password" placeholder="Masukan Password">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                    <a class="block text-right text-sm text-gray-400 hover:text-sky-400" href="#">Lupa Password?</a>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                    <button class="bg-sky-500 w-full text-white text-sm py-2 mt-7 font-bold rounded-full hover:bg-sky-600">MASUK</button>
+                </form>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </section>
+</body>
+</html>
