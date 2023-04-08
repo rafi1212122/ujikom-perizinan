@@ -41,11 +41,13 @@ class StudentController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'room' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
         ]);
 
         Student::create([
             'name' => $request->name,
             'room' => $request->room,
+            'phone' => $request->phone,
         ]);
 
         return redirect(route("students.index"));

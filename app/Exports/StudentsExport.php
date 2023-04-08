@@ -13,7 +13,7 @@ class StudentsExport implements FromQuery, WithHeadings
     */
     public function query()
     {
-        return Student::query()->select(array('id', 'name', 'room'));
+        return Student::query()->select(array('id', 'name', 'room', 'phone'));
     }
     public function headings(): array
     {
@@ -21,6 +21,7 @@ class StudentsExport implements FromQuery, WithHeadings
             'id',
             'name',
             'room',
+            'phone',
         ];
     }
 }
