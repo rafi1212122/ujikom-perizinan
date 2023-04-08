@@ -12,6 +12,8 @@
             <input class="block w-full rounded-lg border-gray-300 mb-4 focus:outline-none focus:border-blue-400 focus:ring-blue-400 focus:shadow-lg focus:shadow-blue-300/75" type="text" name="name" placeholder="Full Name">
             <label class="block mb-2 text-gray-600 font-semibold" for="room">Room</label>
             <input class="block w-full rounded-lg border-gray-300 mb-4 focus:outline-none focus:border-blue-400 focus:ring-blue-400 focus:shadow-lg focus:shadow-blue-300/75" type="text" name="room" placeholder="2.1">
+            <label class="block mb-2 text-gray-600 font-semibold" for="phone">Telepon</label>
+            <input class="block w-full rounded-lg border-gray-300 mb-4 focus:outline-none focus:border-blue-400 focus:ring-blue-400 focus:shadow-lg focus:shadow-blue-300/75" type="text" name="phone" placeholder="+62...">
             <div class="flex justify-end">
                 <button class="py-2 px-3 text-sm rounded-md bg-blue-500 text-white" type="submit">Daftar</button>
             </div>

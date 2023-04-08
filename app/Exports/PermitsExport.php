@@ -27,8 +27,7 @@ class PermitsExport implements FromCollection, WithHeadings, WithMapping
             'tanggal kembali',
             'alasan',
             'pengizin',
-            'status',
-
+            'status'
         ];
     }
 

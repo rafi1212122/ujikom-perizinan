@@ -99,6 +99,12 @@
                                             <span>Room</span>
                                         </button>
                                     </th>
+
+                                    <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
+                                        <button class="flex items-center gap-x-3 focus:outline-none">
+                                            <span>Phone</span>
+                                        </button>
+                                    </th>
     
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
                                         <button class="flex items-center gap-x-3 focus:outline-none">
@@ -124,6 +130,11 @@
                                         <td class="px-12 py-4 text-sm whitespace-nowrap">
                                             <div>
                                                 <h4 class="text-gray-700">{{ $student->room }}</h4>
+                                            </div>
+                                        </td>
+                                        <td class="px-12 py-4 text-sm whitespace-nowrap">
+                                            <div>
+                                                <h4 class="text-gray-700">{{ $student->phone }}</h4>
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm whitespace-nowrap">

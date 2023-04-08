@@ -61,6 +61,12 @@
                                             <span>Name</span>
                                         </button>
                                     </th>
+
+                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500">
+                                        <button class="flex items-center gap-x-3 focus:outline-none">
+                                            <span>Phone</span>
+                                        </button>
+                                    </th>
     
                                     <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500">
                                         <button class="flex items-center gap-x-3 focus:outline-none">
@@ -105,6 +111,11 @@
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
                                                 <h2 class="font-medium text-gray-800">{{ $permit->student->name }} - {{ $permit->student->room }}</h2>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                            <div>
+                                                <h2 class="text-gray-800">{{ $permit->student->phone }}</h2>
                                             </div>
                                         </td>
                                         <td class="px-12 py-4 text-sm whitespace-nowrap">
